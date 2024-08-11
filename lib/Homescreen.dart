@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               ),
               ),
               SizedBox(height: 15,),
-              Image.asset("images/download.png"),
+              Image.asset("images/flutter icon.png"),
               SizedBox(height: 15,),
               ElevatedButton(style:ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
