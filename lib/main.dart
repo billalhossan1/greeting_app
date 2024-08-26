@@ -22,13 +22,10 @@ class HomeScreen extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (_Screenwidth > 1000) {
-            // Desktop Layout
             return Desktop();
           } else if (_Screenwidth > 600) {
-            // Tablet Layout
             return Tablet();
           } else {
-            // Mobile Layout with Drawer
             return Mobile();
           }
         },
