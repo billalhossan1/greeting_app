@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
   }
@@ -38,7 +39,7 @@ class Desktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight:200,
+        toolbarHeight: 200,
         title: Padding(
           padding: const EdgeInsets.only(left: 100),
           child: Text('Flutter Basics'),
@@ -74,32 +75,36 @@ class Desktop extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 100.0,top: 100),
+                    padding: const EdgeInsets.only(left: 100.0, top: 100),
                     child: Container(
                       width: double.infinity,
                       child: Text(
                         'FLUTTER WEB\nTHE BASICS',
-                        style: TextStyle(fontSize: 65, fontFamily: 'ArchivoBlack',
-                        height: 1),
+                        style: TextStyle(
+                            fontSize: 65,
+                            fontFamily: 'ArchivoBlack',
+                            height: 1),
                       ),
                     ),
                   ),
                   SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100.0),
-                        child: Container(
-                          width: double.infinity,
-                          child: Text(
-                            'Billal Hossan, 22 years old, is currently studying to become a Flutter developer on '
-                                'the Ostad platform. He is passionate about mobile app development and enjoys solving '
-                                'complex problems through coding. Billal is dedicated to continuously learning and improving '
-                                'his skills, with a strong focus on creating user-friendly and efficient applications. In his free '
-                                'time, he likes exploring new technologies, contributing to open-source projects, and participating '
-                                'in coding challenges.',
-                            style: TextStyle(fontSize: 21, ),
-                          ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 100.0),
+                    child: Container(
+                      width: double.infinity,
+                      child: Text(
+                        'Billal Hossan, 22 years old, is currently studying to become a Flutter developer on '
+                        'the Ostad platform. He is passionate about mobile app development and enjoys solving '
+                        'complex problems through coding. Billal is dedicated to continuously learning and improving '
+                        'his skills, with a strong focus on creating user-friendly and efficient applications. In his free '
+                        'time, he likes exploring new technologies, contributing to open-source projects, and participating '
+                        'in coding challenges.',
+                        style: TextStyle(
+                          fontSize: 21,
                         ),
                       ),
+                    ),
+                  ),
                   SizedBox(height: 40),
                 ],
               ),
@@ -107,17 +112,14 @@ class Desktop extends StatelessWidget {
             Expanded(
               child: Container(
                 child: Center(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.greenAccent.shade400,
-                      minimumSize: Size(250, 50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
-                      )
-                    ),
-                      onPressed: () {}, child: Text("Follow")
-                  )
-                ),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.greenAccent.shade400,
+                            minimumSize: Size(250, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10))),
+                        onPressed: () {},
+                        child: Text("Follow"))),
               ),
             ),
           ],
@@ -153,48 +155,47 @@ class Tablet extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              child:
-                  Text("FLUTTER WEB",style: TextStyle(
-                    fontSize: 40,
-                    fontFamily: 'ArchivoBlack',
-                    height: 1
-                  ),),),
-                  Container(
-                    child: Text("THE BASICS",style: TextStyle(
-                        fontSize: 40,
-                        fontFamily: 'ArchivoBlack',
-                        height: 1
-                    ),),
+              child: Text(
+                "FLUTTER WEB",
+                style: TextStyle(
+                    fontSize: 40, fontFamily: 'ArchivoBlack', height: 1),
+              ),
+            ),
+            Container(
+              child: Text(
+                "THE BASICS",
+                style: TextStyle(
+                    fontSize: 40, fontFamily: 'ArchivoBlack', height: 1),
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 50.0, right: 50),
+              child: Container(
+                child: Text(
+                  'Billal Hossan, 22 years old, is currently studying to become a Flutter developer on '
+                  'the Ostad platform. He is passionate about mobile app development and enjoys solving '
+                  'complex problems through coding. Billal is dedicated to continuously learning and improving '
+                  'his skills, with a strong focus on creating user-friendly and efficient applications. In his free '
+                  'time, he likes exploring new technologies, contributing to open-source projects, and participating '
+                  'in coding challenges.',
+                  style: TextStyle(
+                    fontSize: 21,
                   ),
-
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0,right: 50),
-                    child: Container(
-                      child: Text(
-                        'Billal Hossan, 22 years old, is currently studying to become a Flutter developer on '
-                            'the Ostad platform. He is passionate about mobile app development and enjoys solving '
-                            'complex problems through coding. Billal is dedicated to continuously learning and improving '
-                            'his skills, with a strong focus on creating user-friendly and efficient applications. In his free '
-                            'time, he likes exploring new technologies, contributing to open-source projects, and participating '
-                            'in coding challenges.',
-                        style: TextStyle(fontSize: 21,),textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-            SizedBox(height: 40),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            SizedBox(height: 100),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.greenAccent.shade400,
                     minimumSize: Size(250, 50),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
-                    )
-                ),
-                onPressed: () {}, child: Text("Follow")
-            ),
+                        borderRadius: BorderRadius.circular(10))),
+                onPressed: () {},
+                child: Text("Follow")),
             SizedBox(height: 40),
-
           ],
         ),
       ),
@@ -207,23 +208,55 @@ class Mobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Basics'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Text(
+              'Flutter Basics',
+              style: TextStyle(fontSize: 20),
+            ),
+          )
+        ],
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+            Container(
+              height: 300,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.greenAccent.shade400,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'SKILL UP NOW',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontFamily: 'ArchivoBlack'),
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        'Tap Here',
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
+            ),
+            SizedBox(
+              height: 21,
             ),
             ListTile(
               leading: Icon(Icons.home),
@@ -232,12 +265,18 @@ class Mobile extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
+            SizedBox(
+              height: 21,
+            ),
             ListTile(
               leading: Icon(Icons.info),
               title: Text('About'),
               onTap: () {
                 Navigator.pop(context);
               },
+            ),
+            SizedBox(
+              height: 21,
             ),
             ListTile(
               leading: Icon(Icons.contact_page),
@@ -255,26 +294,33 @@ class Mobile extends StatelessWidget {
           children: [
             Text(
               'FLUTTER WEB\nTHE BASICS',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 40, fontFamily: 'ArchivoBlack', height: 1),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 20),
-            Text(
-              'Billal Hossan, 22 years old, is currently studying to become a Flutter developer on '
-                  'the Ostad platform. He is passionate about mobile app development and enjoys solving '
-                  'complex problems through coding. Billal is dedicated to continuously learning and improving '
-                  'his skills, with a strong focus on creating user-friendly and efficient applications. In his free '
-                  'time, he likes exploring new technologies, contributing to open-source projects, and participating '
-                  'in coding challenges.',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: Text(
+                'Billal Hossan, 22 years old, is currently studying to become a Flutter developer on '
+                'the Ostad platform. He is passionate about mobile app development and enjoys solving '
+                'complex problems through coding. Billal is dedicated to continuously learning and improving '
+                'his skills, with a strong focus on creating user-friendly and efficient applications. In his free '
+                'time, he likes exploring new technologies, contributing to open-source projects, and participating '
+                'in coding challenges.',
+                style: TextStyle(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 100),
             ElevatedButton(
-              onPressed: () {},
-              child: Text('Follow'),
-            ),
-            SizedBox(height: 20),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.greenAccent.shade400,
+                    minimumSize: Size(250, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                onPressed: () {},
+                child: Text("Follow")),
           ],
         ),
       ),
