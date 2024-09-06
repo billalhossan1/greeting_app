@@ -66,7 +66,7 @@ class ShoppingCartScreen extends StatelessWidget {
         CartItem(
           imageUrl: 'assets/images/t_shirt2.jpeg',
           name: 'T-Shirt',
-          color: 'Gray',
+          color: 'Blue',
           size: 'L',
           price: 30,
         ),
@@ -143,7 +143,22 @@ class CartItem extends StatelessWidget {
                     name,
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  Text('Color: $color \nSize: $size'),
+                   Row(
+                    children: [
+                     const Text('Color: '),
+                      Text(color,style: const TextStyle(
+                        fontWeight: FontWeight.w800
+                      ),)
+                    ],
+                  ),
+                  Row(
+                    children: [
+                    const  Text('Size: '),
+                      Text(size,style:const TextStyle(
+                          fontWeight: FontWeight.w800
+                      ),)
+                    ],
+                  ),
                 ],
               ),
             ),
