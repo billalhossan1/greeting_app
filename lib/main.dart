@@ -181,7 +181,7 @@ class CartItem extends StatelessWidget {
 
             Column(
               children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.more_vert)),
+              IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert)),
                const SizedBox(
                   height: 10,
                 ),
