@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: ShoppingCartScreen(),
     );
   }
@@ -177,7 +178,16 @@ class CartItem extends StatelessWidget {
               ],
             ),
             const SizedBox(width: 16),
-            Text('\$${price.toString()}'),
+
+            Column(
+              children: [
+              IconButton(onPressed: (){}, icon: Icon(Icons.more_vert)),
+               const SizedBox(
+                  height: 10,
+                ),
+                Text('\$${price.toString()}'),
+              ],
+            )
           ],
         ),
       ),
