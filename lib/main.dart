@@ -89,20 +89,25 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Thanks for purchasing the Product'),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    textStyle: const TextStyle(fontSize: 18),
+                SizedBox(
+                  width: 290,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Thanks for purchasing the Product'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      textStyle: const TextStyle(fontSize: 18),
+                      backgroundColor: Colors.cyan,
+                      foregroundColor: Colors.black
+                    ),
+                    child: const Text('Checkout'),
                   ),
-                  child: const Text('Checkout'),
                 ),
                 const SizedBox(height: 16),
                 Row(
