@@ -16,8 +16,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ShoppingCartScreen extends StatelessWidget {
+class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({super.key});
+
+  @override
+  _ShoppingCartScreenState createState() => _ShoppingCartScreenState();
+}
+
+class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
+  final List<CartItemData> items = [
+    CartItemData(imageUrl: 'assets/images/t_shirt1.jpeg', name: 'Pullover', color: 'Black', size: 'L', price: 51, quantity: 1),
+    CartItemData(imageUrl: 'assets/images/t_shirt2.jpeg', name: 'T-Shirt', color: 'Blue', size: 'L', price: 30, quantity: 1),
+    CartItemData(imageUrl: 'assets/images/t_shirt3.jpeg', name: 'Sport Dress', color: 'Black', size: 'M', price: 43, quantity: 1),
+    CartItemData(imageUrl: 'assets/images/t_shirt4.jpeg', name: 'T-Shirt', color: 'White', size: 'M', price: 34, quantity: 1),
+    CartItemData(imageUrl: 'assets/images/t_shirt5.jpeg', name: 'T-Shirt', color: 'Black', size: 'M', price: 36, quantity: 1),
+    CartItemData(imageUrl: 'assets/images/t_shirt6.jpeg', name: 'T-Shirt', color: 'Black', size: 'M', price: 33, quantity: 1),
+  ];
+
+  double get totalAmount {
+    double sum = 0;
+    for (var item in items) {
+      sum += item.price * item.quantity;
+    }
+    return sum;
+  }
+
+  void increaseQuantity(int index) {
+    setState(() {
+      items[index].quantity++;
+    });
+  }
+
+  void decreaseQuantity(int index) {
+    setState(() {
+      if (items[index].quantity > 1) {
+        items[index].quantity--;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +67,56 @@ class ShoppingCartScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: listOfProduct(),
+            child: ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                CartItemData currentItem = items[index];
+                increaseCallback() {
+                  increaseQuantity(index);
+                }
+                decreaseCallback() {
+                  decreaseQuantity(index);
+                }
+                return CartItem(
+                  item: currentItem,
+                  onIncrease: increaseCallback,
+                  onDecrease: decreaseCallback,
+                );
+              },
+            ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               children: [
-                Text(
-                  'Total amount:',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Thanks for purchasing the Product'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
+                  child: const Text('Checkout'),
                 ),
-                Text(
-                  '\$227',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Total amount:',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '\$${totalAmount.toStringAsFixed(2)}',
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -53,71 +125,36 @@ class ShoppingCartScreen extends StatelessWidget {
       ),
     );
   }
-
-  ListView listOfProduct() {
-    return ListView(
-      children: const [
-        CartItem(
-          imageUrl: 'assets/images/t_shirt1.jpeg',
-          name: 'Pullover',
-          color: 'Black',
-          size: 'L',
-          price: 51,
-        ),
-        CartItem(
-          imageUrl: 'assets/images/t_shirt2.jpeg',
-          name: 'T-Shirt',
-          color: 'Blue',
-          size: 'L',
-          price: 30,
-        ),
-        CartItem(
-          imageUrl: 'assets/images/t_shirt3.jpeg',
-          name: 'Sport Dress',
-          color: 'Black',
-          size: 'M',
-          price: 43,
-        ),
-        CartItem(
-            imageUrl: 'assets/images/t_shirt4.jpeg',
-            name: 'T-Shirt',
-            color: 'White',
-            size: 'M',
-            price: 34
-        ),
-        CartItem(
-            imageUrl: 'assets/images/t_shirt5.jpeg',
-            name: 'T-Shirt',
-            color: 'Black',
-            size: 'M',
-            price: 36
-        ),
-        CartItem(
-            imageUrl: 'assets/images/t_shirt6.jpeg',
-            name: 'T-Shirt',
-            color: 'Black',
-            size: 'M',
-            price: 33
-        )
-      ],
-    );
-  }
 }
 
-class CartItem extends StatelessWidget {
+class CartItemData {
   final String imageUrl;
   final String name;
   final String color;
   final String size;
   final int price;
+  int quantity;
 
-  const CartItem({
-    super.key,
+  CartItemData({
     required this.imageUrl,
     required this.name,
     required this.color,
     required this.size,
     required this.price,
+    this.quantity = 1,
+  });
+}
+
+class CartItem extends StatelessWidget {
+  final CartItemData item;
+  final VoidCallback onIncrease;
+  final VoidCallback onDecrease;
+
+  const CartItem({
+    super.key,
+    required this.item,
+    required this.onIncrease,
+    required this.onDecrease,
   });
 
   @override
@@ -130,7 +167,7 @@ class CartItem extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(
-              imageUrl,
+              item.imageUrl,
               width: 50,
               height: 50,
               fit: BoxFit.cover,
@@ -141,23 +178,19 @@ class CartItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    item.name,
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                   Row(
+                  Row(
                     children: [
-                     const Text('Color: '),
-                      Text(color,style: const TextStyle(
-                        fontWeight: FontWeight.w800
-                      ),)
+                      const Text('Color: '),
+                      Text(item.color, style: const TextStyle(fontWeight: FontWeight.w800)),
                     ],
                   ),
                   Row(
                     children: [
-                    const  Text('Size: '),
-                      Text(size,style:const TextStyle(
-                          fontWeight: FontWeight.w800
-                      ),)
+                      const Text('Size: '),
+                      Text(item.size, style: const TextStyle(fontWeight: FontWeight.w800)),
                     ],
                   ),
                 ],
@@ -168,31 +201,26 @@ class CartItem extends StatelessWidget {
               children: [
                 IconButton(
                   icon: const Icon(Icons.remove),
-                  onPressed: () {}, // Implement your functionality
+                  onPressed: onDecrease,
                 ),
-                const Text('1'),
+                Text('${item.quantity}'),
                 IconButton(
                   icon: const Icon(Icons.add),
-                  onPressed: () {}, // Implement your functionality
+                  onPressed: onIncrease,
                 ),
               ],
             ),
             const SizedBox(width: 16),
-
             Column(
               children: [
-              IconButton(onPressed: (){}, icon: const Icon(Icons.more_vert)),
-               const SizedBox(
-                  height: 10,
-                ),
-                Text('\$${price.toString()}'),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
+                const SizedBox(height: 10),
+                Text('\$${(item.price * item.quantity).toStringAsFixed(2)}'),
               ],
-            )
+            ),
           ],
         ),
       ),
     );
   }
-
-  
 }
