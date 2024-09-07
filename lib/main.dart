@@ -94,7 +94,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                       const SnackBar(
                           content: Text('Thanks for purchasing the Product'),
                           duration: Duration(seconds: 2),
                         ),
